@@ -18,3 +18,4 @@ Imports:
 LinkingTo: Rcpp, RcppEigen
 RoxygenNote: 7.3.1
 Encoding: UTF-8
+URL: https://swarm-lab.github.io/boRing/

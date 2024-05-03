@@ -2,3 +2,9 @@
 ^\.Rproj\.user$
 scripts
 .vscode
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^codecov\.yml$
+^cran-comments\.md$
