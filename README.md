@@ -1,5 +1,5 @@
 
-# boRing
+ # boRing <a href="https://swarm-lab.github.io/boRing/"><img src="man/figures/logo.png" align="right" height="138" alt="boRing website" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/boRing)](https://CRAN.R-project.org/package=boRing)
