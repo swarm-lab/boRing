@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+src/*.o
+src/*.so
+src/*.dll
+src/*.tmp
+src-*
+scripts
+.DS_Store
+docs
+/doc/
+/Meta/
+.vscode

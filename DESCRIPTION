@@ -1,0 +1,20 @@
+Package: boRing
+Type: Package
+Title: Unimodality index for multivariate empirical distributions
+Version: 0.1
+Date: 2024-05-03
+Authors@R: c(
+    person("Simon", "Garnier", email = "garnier@njit.edu", role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0002-3886-3974")),
+    person("Graham", "Jason", email = "jason.graham@scranton.edu", role = c("ctb", "cph"))
+  )
+Maintainer: Simon Garnier <garnier@njit.edu>
+Description: A simple index for estimating the degree of unimodality of a 
+    multivariate empirical distribution.
+License: GPL-3
+Imports: 
+    Rcpp (>= 1.0.12),
+    stats
+LinkingTo: Rcpp, RcppEigen
+RoxygenNote: 7.3.1
+Encoding: UTF-8
