@@ -8,3 +8,4 @@ scripts
 ^\.github$
 ^codecov\.yml$
 ^cran-comments\.md$
+logo.*
