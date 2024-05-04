@@ -1,7 +1,7 @@
 url: https://swarm-lab.github.io/boRing/
 template:
   bootstrap: 5
-  bootswatch: simplex
+  bootswatch: flatly
 
 authors:
   Simon Garnier:
