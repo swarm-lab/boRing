@@ -65,5 +65,3 @@ X <- rbind(m1, m2, m3)
 plot(X, asp = 1)
 boring(X)
 ```
-
----
