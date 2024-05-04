@@ -84,6 +84,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"swarm-lab/boRing"</span><span class="op">)</span></span></code></pre></div>
+<p><code>boRing</code> depends on <a href="https://github.com/RcppCore/RcppEigen" class="external-link"><code>RcppEigen</code></a> for computing efficiently the weighted covariance matrix of the empirical distribution as well as the Mahalanobis distances of the observations. A significant performance increase can be obtained by adding the <code>-O3</code> optimization flag to the <code>CXXFLAGS</code> line in your local <code>.R/Makevars</code> file. If you don’t know where your local <code>.R/Makevars</code> file is located, install the <a href="https://usethis.r-lib.org/" class="external-link"><code>usethis</code></a> package and then run <code>usethis::edit_r_makevars()</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
