@@ -4,6 +4,7 @@
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/boRing)](https://CRAN.R-project.org/package=boRing)
 [![R-CMD-check](https://github.com/swarm-lab/boRing/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/swarm-lab/boRing/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/swarm-lab/boRing/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/swarm-lab/boRing/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
 The goal of `boRing` is to provide an easy metric to determine whether a 
