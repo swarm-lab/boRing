@@ -27,5 +27,5 @@ boring <- function(x, w = rep(1, nrow(x))) {
   covar <- wcov(x, w)
   d <- Mahalanobis(x, covar$center, covar$cov)
   ord <- order(d)
-  cor(d[ord], cumsum(w[ord]) / (d[ord]^2), method = "spearman")^2
+  cor(d[ord], cumsum(w[ord]) / d[ord], method = "spearman")^2
 }
