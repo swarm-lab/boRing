@@ -12,6 +12,8 @@ Maintainer: Simon Garnier <garnier@njit.edu>
 Description: A simple index for estimating the degree of unimodality of a 
     multivariate empirical distribution.
 License: GPL-3
+Depends: 
+    R (>= 4.0.0)
 Imports: 
     Rcpp (>= 1.0.12),
     stats
