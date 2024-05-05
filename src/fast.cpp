@@ -1,7 +1,7 @@
 #include <RcppEigen.h>
 // [[Rcpp::depends(RcppEigen)]]
 
-//' @name wcov
+//' @name .wcov
 //' 
 //' @title Weighted Covariance Matrix
 //' 
@@ -25,9 +25,9 @@
 //' @examples
 //' m <- matrix(c(rnorm(500, 6), rnorm(500, 11, 3)), ncol = 2)
 //' w <- runif(500)
-//' wcov(m, w)
+//' boRing:::.wcov(m, w)
 //'
-// [[Rcpp::export]]
+// [[Rcpp::export(.wcov)]]
 Rcpp::List wcov(Eigen::MatrixXd &x, Eigen::VectorXd &w)
 {
     Eigen::VectorXd center(x.cols());
@@ -48,7 +48,7 @@ Rcpp::List wcov(Eigen::MatrixXd &x, Eigen::VectorXd &w)
 }
 
 
-//' @name Mahalanobis
+//' @name .Mahalanobis
 //' 
 //' @title Mahalanobis Distance
 //' 
@@ -74,10 +74,10 @@ Rcpp::List wcov(Eigen::MatrixXd &x, Eigen::VectorXd &w)
 //' @examples
 //' m <- matrix(c(rnorm(500, 6), rnorm(500, 11, 3)), ncol = 2)
 //' w <- runif(500)
-//' covar <- wcov(m, w)
-//' Mahalanobis(m, covar$center, covar$cov)
+//' covar <- boRing:::.wcov(m, w)
+//' boRing:::.Mahalanobis(m, covar$center, covar$cov)
 //'
-// [[Rcpp::export]]
+// [[Rcpp::export(.Mahalanobis)]]
 Eigen::MatrixXd Mahalanobis(Eigen::MatrixXd &x, Eigen::VectorXd &center,
                             Eigen::MatrixXd &cov)
 {

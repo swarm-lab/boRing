@@ -9,9 +9,12 @@
 #' @param w A optional non-negative and non-zero vector of weights for each
 #'  observation. Its length must equal the number of rows of x.
 #'
+#' @param na_rm A logical evaluating to \code{TRUE} or \code{FALSE} indicating
+#'  whether NA values should be stripped before the computation proceeds.
+#'
 #' @return A numeric value indicating how boring (i.e., unimodal) the empirical
 #'  distribution is. Values close to 1 indicate that the distribution is likely
-#'  unimodal. Values close to 0 indicate that it is likely not. 
+#'  unimodal. Values close to 0 indicate that it is likely not.
 #'
 #' @author Simon Garnier, \email{garnier@@njit.edu}
 #'
@@ -23,9 +26,23 @@
 #' boring(X)
 #'
 #' @export
-boring <- function(x, w = rep(1, nrow(x))) {
-  covar <- wcov(x, w)
-  d <- Mahalanobis(x, covar$center, covar$cov)
+boring <- function(x, w = rep(1, nrow(x)), na_rm = FALSE) {
+  if (!is.matrix(x)) {
+    x <- as.matrix(x)
+  }
+
+  if (nrow(x) != length(w)) {
+    stop("The length of 'w' does not equal the number of rows of 'x'.")
+  }
+
+  if (na_rm) {
+    na_ix <- apply(x, 1, function(r) any(is.na(r))) | is.na(w)
+    x <- x[na_ix, ]
+    w <- w[na_ix]
+  }
+
+  covar <- .wcov(x, w)
+  d <- sqrt(.Mahalanobis(x, covar$center, covar$cov))
   ord <- order(d)
-  cor(d[ord], cumsum(w[ord]) / d[ord], method = "spearman")^2
+  cor(d[ord], cumsum(w[ord]) / (d[ord]^ncol(x)), method = "spearman")^2
 }

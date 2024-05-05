@@ -1,6 +1,4 @@
 useDynLib(boRing)
 importFrom(Rcpp, evalCpp)
 importFrom(stats, cor)
-export("wcov")
-export("Mahalanobis")
 export("boring")

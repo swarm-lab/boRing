@@ -4,7 +4,7 @@
 \alias{boring}
 \title{Multivariate Unimodality Index}
 \usage{
-boring(x, w = rep(1, nrow(x)))
+boring(x, w = rep(1, nrow(x)), na_rm = FALSE)
 }
 \arguments{
 \item{x}{A matrix with \eqn{m} columns and \eqn{n} rows, where each column
@@ -12,6 +12,9 @@ represents a different variable and each row a different observation.}
 
 \item{w}{A optional non-negative and non-zero vector of weights for each
 observation. Its length must equal the number of rows of x.}
+
+\item{na_rm}{A logical evaluating to \code{TRUE} or \code{FALSE} indicating
+whether NA values should be stripped before the computation proceeds.}
 }
 \value{
 A numeric value indicating how boring (i.e., unimodal) the empirical
