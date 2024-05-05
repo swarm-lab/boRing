@@ -53,12 +53,12 @@ devtools::install_github("swarm-lab/boRing")
 
 `boRing` depends on [`RcppEigen`](https://github.com/RcppCore/RcppEigen) for 
 computing efficiently the weighted covariance matrix of the empirical 
-distribution as well as the Mahalanobis distances of the observations. 
-A significant performance increase can be obtained by adding the `-O3` 
-optimization flag to the `CXXFLAGS` line in your local `.R/Makevars` file. If 
-you don't know where your local `.R/Makevars` file is located, install the 
-[`usethis`](https://usethis.r-lib.org/) package and then run 
-`usethis::edit_r_makevars()`.
+distribution as well as the Mahalanobis distances of the observations. Provided
+that your compiler allows it, a significant performance increase can be obtained
+by adding the `-O3` optimization flag to the `CXXFLAGS` line in your local
+`.R/Makevars` file. If you don't know where your local `.R/Makevars` file is 
+located, install the [`usethis`](https://usethis.r-lib.org/) package and then 
+run `usethis::edit_r_makevars()`.
 
 ---
 
