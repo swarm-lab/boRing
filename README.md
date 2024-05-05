@@ -7,6 +7,8 @@
 [![test-coverage](https://github.com/swarm-lab/boRing/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/swarm-lab/boRing/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
+## Description
+
 The goal of `boRing` is to provide an easy metric to determine whether a 
 multivariate empirical distribution is likely unimodal (that is, a boring 
 distribution) or not. The "boringness" index is based on the idea that the 
@@ -31,6 +33,8 @@ density of observations decreases monotonically with the distance to the center
 of mass of the distribution and, hence, that the distribution is likely unimodal
 (or, boring). 
 
+---
+
 ## Installation
 
 At this time, `boRing` is not yet available on CRAN. 
@@ -43,6 +47,10 @@ You can install the development version of boRing from
 devtools::install_github("swarm-lab/boRing")
 ```
 
+---
+
+## Performance tip
+
 `boRing` depends on [`RcppEigen`](https://github.com/RcppCore/RcppEigen) for 
 computing efficiently the weighted covariance matrix of the empirical 
 distribution as well as the Mahalanobis distances of the observations. 
@@ -52,6 +60,7 @@ you don't know where your local `.R/Makevars` file is located, install the
 [`usethis`](https://usethis.r-lib.org/) package and then run 
 `usethis::edit_r_makevars()`.
 
+---
 
 ## Example
 
