@@ -57,12 +57,12 @@ boring <- function(
 
   if (na_rm) {
     na_ix <- apply(x, 1, function(r) any(is.na(r))) | is.na(w)
-    x <- x[!na_ix, ]
+    x <- x[!na_ix, , drop = FALSE]
     w <- w[!na_ix]
   }
 
   if (ci) {
-    bt <- boot::boot(x, function(xi, i) .boring(xi[i, ], w[i]), R = boot_rep, ...)
+    bt <- boot::boot(x, function(xi, i) .boring(xi[i, , drop = FALSE], w[i]), R = boot_rep, ...)
     bt_ci <- boot::boot.ci(bt, boot_conf, "perc")
     c(estimate = bt_ci$t0, lower = bt_ci$percent[4], upper = bt_ci$percent[5])
   } else {
