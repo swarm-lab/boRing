@@ -94,7 +94,7 @@
 <div class="section level2">
 <h2 id="performance-tip">Performance tip<a class="anchor" aria-label="anchor" href="#performance-tip"></a>
 </h2>
-<p><code>boRing</code> depends on <a href="https://github.com/RcppCore/RcppEigen" class="external-link"><code>RcppEigen</code></a> for computing efficiently the weighted covariance matrix of the empirical distribution as well as the Mahalanobis distances of the observations. A significant performance increase can be obtained by adding the <code>-O3</code> optimization flag to the <code>CXXFLAGS</code> line in your local <code>.R/Makevars</code> file. If you don’t know where your local <code>.R/Makevars</code> file is located, install the <a href="https://usethis.r-lib.org/" class="external-link"><code>usethis</code></a> package and then run <code>usethis::edit_r_makevars()</code>.</p>
+<p><code>boRing</code> depends on <a href="https://github.com/RcppCore/RcppEigen" class="external-link"><code>RcppEigen</code></a> for computing efficiently the weighted covariance matrix of the empirical distribution as well as the Mahalanobis distances of the observations. Provided that your compiler allows it, a significant performance increase can be obtained by adding the <code>-O3</code> optimization flag to the <code>CXXFLAGS</code> line in your local <code>.R/Makevars</code> file. If you don’t know where your local <code>.R/Makevars</code> file is located, install the <a href="https://usethis.r-lib.org/" class="external-link"><code>usethis</code></a> package and then run <code>usethis::edit_r_makevars()</code>.</p>
 <hr>
 </div>
 <div class="section level2">
