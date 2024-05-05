@@ -37,8 +37,8 @@ boring <- function(x, w = rep(1, nrow(x)), na_rm = FALSE) {
 
   if (na_rm) {
     na_ix <- apply(x, 1, function(r) any(is.na(r))) | is.na(w)
-    x <- x[na_ix, ]
-    w <- w[na_ix]
+    x <- x[!na_ix, ]
+    w <- w[!na_ix]
   }
 
   covar <- .wcov(x, w)
