@@ -16,7 +16,8 @@ Depends:
     R (>= 4.0.0)
 Imports: 
     Rcpp (>= 1.0.12),
-    stats
+    stats,
+    boot
 LinkingTo: Rcpp, RcppEigen
 RoxygenNote: 7.3.1
 Encoding: UTF-8
