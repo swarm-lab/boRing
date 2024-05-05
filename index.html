@@ -68,6 +68,9 @@
 </div>
 <!-- badges: start -->
 
+<div class="section level2">
+<h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
+</h2>
 <p>The goal of <code>boRing</code> is to provide an easy metric to determine whether a multivariate empirical distribution is likely unimodal (that is, a boring distribution) or not. The “boringness” index is based on the idea that the density of observations should decrease monotonically with the the distance to the center of mass of an unimodal empirical distribution.</p>
 <p>The computation of the “boringness” index is done as follows:</p>
 <ol style="list-style-type: decimal">
@@ -76,6 +79,8 @@
 <li><p>We order the observations based on their Mahalanobis distance (from closest to furthest away).</p></li>
 <li><p>We compute the squared Spearman correlation between the Mahalanobis distances of the ordered observations and the weighted density of the observations up to each computed distance. If the correlation is close to 1, it indicates that the density of observations decreases monotonically with the distance to the center of mass of the distribution and, hence, that the distribution is likely unimodal (or, boring).</p></li>
 </ol>
+<hr>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -84,7 +89,13 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"swarm-lab/boRing"</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="performance-tip">Performance tip<a class="anchor" aria-label="anchor" href="#performance-tip"></a>
+</h2>
 <p><code>boRing</code> depends on <a href="https://github.com/RcppCore/RcppEigen" class="external-link"><code>RcppEigen</code></a> for computing efficiently the weighted covariance matrix of the empirical distribution as well as the Mahalanobis distances of the observations. A significant performance increase can be obtained by adding the <code>-O3</code> optimization flag to the <code>CXXFLAGS</code> line in your local <code>.R/Makevars</code> file. If you don’t know where your local <code>.R/Makevars</code> file is located, install the <a href="https://usethis.r-lib.org/" class="external-link"><code>usethis</code></a> package and then run <code>usethis::edit_r_makevars()</code>.</p>
+<hr>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
