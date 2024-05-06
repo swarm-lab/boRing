@@ -4,15 +4,7 @@
 \alias{boring}
 \title{Multivariate Unimodality Index}
 \usage{
-boring(
-  x,
-  w = rep(1, nrow(x)),
-  na_rm = FALSE,
-  ci = FALSE,
-  boot_rep = 1000,
-  boot_conf = 0.95,
-  ...
-)
+boring(x, w = rep(1, nrow(x)), na_rm = FALSE, conf_level = NA)
 }
 \arguments{
 \item{x}{A matrix with \eqn{m} columns and \eqn{n} rows, where each column
@@ -24,16 +16,9 @@ observation. Its length must equal the number of rows of x.}
 \item{na_rm}{A logical indicating whether NA values should be stripped before
 the computation proceeds (default: FALSE).}
 
-\item{ci}{A logical indidicating whether a confidence interval should be
-estimated by bootstrapping (default: FALSE).}
-
-\item{boot_rep}{If \code{ci = TRUE}, an integer number of bootstrap
-replicates (default: 1000).}
-
-\item{boot_conf}{A scalar indicating the confidence level of the required
-confidence interval (default: 0.95).}
-
-\item{...}{Additional parameters to be passed to \code{\link[boot]{boot}}.}
+\item{conf_level}{A scalar indicating the confidence level of the required
+confidence interval (default: NA, no confidence interval is returned). The
+confidence intervals are calculated via z-Transformation.}
 }
 \value{
 A numeric value indicating how boring (i.e., unimodal) the empirical

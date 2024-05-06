@@ -1,6 +1,5 @@
 useDynLib(boRing)
 importFrom(Rcpp, evalCpp)
 importFrom(stats, cor)
-importFrom(boot, boot)
-importFrom(boot, boot.ci)
+importFrom(stats, qnorm)
 export("boring")

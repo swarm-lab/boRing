@@ -26,12 +26,12 @@ distance of each observation to the center of mass of the distribution.
 3. We order the observations based on their Mahalanobis distance (from closest
 to furthest away).
 
-4. We compute the squared Spearman correlation between the Mahalanobis distances 
-of the ordered observations and the weighted density of the observations up to 
-each computed distance. If the correlation is close to 1, it indicates that the
-density of observations decreases monotonically with the distance to the center
-of mass of the distribution and, hence, that the distribution is likely unimodal
-(or, boring). 
+4. We compute the Spearman correlation between the negative Mahalanobis 
+distances of the ordered observations and the weighted density of the 
+observations up to each computed distance. If the correlation is close to 1, it 
+indicates that the density of observations decreases monotonically with the 
+distance to the center of mass of the distribution and, hence, that the 
+distribution is likely unimodal (or, boring). 
 
 ---
 

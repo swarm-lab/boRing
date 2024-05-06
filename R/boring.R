@@ -1,8 +1,21 @@
-.boring <- function(x, w) {
-  covar <- .wcov(x, w)
-  d <- sqrt(.Mahalanobis(x, covar$center, covar$cov))
-  ord <- order(d)
-  cor(d[ord], cumsum(w[ord]) / (d[ord]^ncol(x)), method = "spearman")^2
+.cor <- function(x, y, conf_level) {
+  rho <- cor(x, y, method = "spearman")
+
+  if (is.na(conf_level)) {
+    result <- c(estimate = rho)
+  } else {
+    n <- length(x)
+    e_fx <- exp(2 * ((0.5 * log((1 + rho) / (1 - rho))) - c(1, -1) *
+      (abs(qnorm((1 - conf_level) / 2))) * (1 / sqrt(sum(n) - 3))))
+    ci <- (e_fx - 1) / (e_fx + 1)
+    result <- c(
+      estimate = rho,
+      lower_ci = max(ci[1], -1),
+      upper_ci = min(ci[2], 1)
+    )
+  }
+
+  result
 }
 
 #' @title Multivariate Unimodality Index
@@ -19,16 +32,9 @@
 #' @param na_rm A logical indicating whether NA values should be stripped before
 #'  the computation proceeds (default: FALSE).
 #'
-#' @param ci A logical indidicating whether a confidence interval should be
-#'  estimated by bootstrapping (default: FALSE).
-#'
-#' @param boot_rep If \code{ci = TRUE}, an integer number of bootstrap
-#'  replicates (default: 1000).
-#'
-#' @param boot_conf A scalar indicating the confidence level of the required
-#'  confidence interval (default: 0.95).
-#'
-#' @param ... Additional parameters to be passed to \code{\link[boot]{boot}}.
+#' @param conf_level A scalar indicating the confidence level of the required
+#'  confidence interval (default: NA, no confidence interval is returned). The
+#'  confidence intervals are calculated via z-Transformation.
 #'
 #' @return A numeric value indicating how boring (i.e., unimodal) the empirical
 #'  distribution is. Values close to 1 indicate that the distribution is likely
@@ -44,9 +50,7 @@
 #' boring(X)
 #'
 #' @export
-boring <- function(
-    x, w = rep(1, nrow(x)), na_rm = FALSE,
-    ci = FALSE, boot_rep = 1000, boot_conf = 0.95, ...) {
+boring <- function(x, w = rep(1, nrow(x)), na_rm = FALSE, conf_level = NA) {
   if (!is.matrix(x)) {
     x <- as.matrix(x)
   }
@@ -61,11 +65,12 @@ boring <- function(
     w <- w[!na_ix]
   }
 
-  if (ci) {
-    bt <- boot::boot(x, function(xi, i) .boring(xi[i, , drop = FALSE], w[i]), R = boot_rep, ...)
-    bt_ci <- boot::boot.ci(bt, boot_conf, "perc")
-    c(estimate = bt_ci$t0, lower = bt_ci$percent[4], upper = bt_ci$percent[5])
-  } else {
-    c(estimate = .boring(x, w))
-  }
+  covar <- .wcov(x, w)
+  d <- sqrt(.Mahalanobis(x, covar$center, covar$cov))
+  ord <- order(d)
+  .cor(
+    x = -d[ord],
+    y = cumsum(w[ord]) / (d[ord]^ncol(x)),
+    conf_level = conf_level
+  )
 }
