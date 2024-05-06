@@ -2,20 +2,18 @@
   rho <- cor(x, y, method = "spearman")
 
   if (is.na(conf_level)) {
-    result <- c(estimate = rho)
+    c(estimate = rho)
   } else {
     n <- length(x)
     e_fx <- exp(2 * ((0.5 * log((1 + rho) / (1 - rho))) - c(1, -1) *
       (abs(qnorm((1 - conf_level) / 2))) * (1 / sqrt(sum(n) - 3))))
     ci <- (e_fx - 1) / (e_fx + 1)
-    result <- c(
+    c(
       estimate = rho,
       lower_ci = max(ci[1], -1),
       upper_ci = min(ci[2], 1)
     )
   }
-
-  result
 }
 
 #' @title Multivariate Unimodality Index
