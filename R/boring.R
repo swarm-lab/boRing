@@ -38,7 +38,7 @@
 #'
 #' @return A numeric value indicating how boring (i.e., unimodal) the empirical
 #'  distribution is. Values close to 1 indicate that the distribution is likely
-#'  unimodal. Values close to 0 indicate that it is likely not.
+#'  unimodal.
 #'
 #' @author Simon Garnier, \email{garnier@@njit.edu}
 #'
