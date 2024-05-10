@@ -1,0 +1,151 @@
+---
+title: "More `boRing` Examples"
+author: 
+  - "Jason M. Graham"
+  - "Simon Garnier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{More `boRing` Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette uses the `penguins` data set from the 
+[`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins/index.html) 
+package by [Allison Horst](https://allisonhorst.com/), 
+[Alison Hill](https://www.apreshill.com/), and 
+[Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) 
+to demonstrate features of `boRing`. 
+
+```{r setup}
+# install.packages("palmerpenguins")
+# install.packages("ggplot2")
+library(palmerpenguins)
+library(ggplot2)
+library(boRing)
+```
+
+The `penguins` data frame contains observations about penguins consisting of 
+year, species, sex, name of island where a bird was observed, and four physical
+measurements.
+
+```{r, echo=FALSE}
+head(penguins) |>
+  knitr::kable()
+```
+
+Note that there are missing values for some observations. 
+
+If we plot the body mass of penguins versus their flipper length, we can observe
+some clustering by species.
+
+```{r, out.width="75%", fig.align="center", dpi = 300}
+penguins |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point(size = 1) +
+  scale_color_brewer(palette = "Dark2") +
+  guides(color = guide_legend(position = "top")) +
+  theme_bw(base_size = 7) +
+  theme(
+    legend.title = element_blank()
+  )
+```
+
+This data appears to lack unimodality. Let's compute the boringness index for 
+the plotted data:
+
+```{r}
+penguins |>
+  dplyr::select(flipper_length_mm, body_mass_g) |>
+  as.matrix() |>
+  boring(na_rm = TRUE, conf_level = 0.95)
+```
+
+The boringness index value reflects what we observed in the plot. Contrast the
+previous result with the boringness index value obtained when we restrict to 
+only the Gentoo species:
+
+```{r}
+penguins |>
+  dplyr::filter(species == "Gentoo") |>
+  dplyr::select(flipper_length_mm, body_mass_g) |>
+  as.matrix() |>
+  boring(na_rm = TRUE, conf_level = 0.95)
+```
+
+This boringness index value is consistent with the increased unimodality of the 
+data when observing only the single species of Gentoo.
+
+As another illustration, let's examine the relationship between the bill length
+and bill depth of the penguins:
+
+```{r, out.width="75%", fig.align="center", dpi = 300}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point(size = 1) +
+  scale_color_brewer(palette = "Dark2") +
+  guides(color = guide_legend(position = "top")) +
+  theme_bw(base_size = 7) +
+  theme(
+    legend.title = element_blank()
+  )
+```
+
+Again, this data appears to lacks unimodality but now there is also lower 
+density in the center of the cloud of data points. Let's compute the boring 
+metric for the plotted data:
+
+```{r}
+penguins |>
+  dplyr::select(bill_length_mm, bill_depth_mm) |>
+  as.matrix() |>
+  boring(na_rm = TRUE, conf_level = 0.95)
+```
+
+The negative value for the boringness index is consistent with what we observed
+in the plot. 
+
+It may be interesting to consider what is happening with regard to the bill
+length and bill depth for the Chinstrap species:
+
+```{r}
+penguins |>
+  dplyr::filter(species == "Chinstrap") |>
+  dplyr::select(bill_length_mm, bill_depth_mm) |>
+  as.matrix() |>
+  boring(na_rm = TRUE, conf_level = 0.95)
+```
+
+A relatively low value of unimodality is predicted. This may be explained
+looking at the difference in the measurements across sex:
+
+```{r, out.width="75%", fig.align="center", dpi = 300}
+penguins |>
+  dplyr::filter(species == "Chinstrap") |>
+  dplyr::select(bill_length_mm, bill_depth_mm, sex) |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = sex)) +
+  geom_point(size = 1) +
+  scale_color_brewer(palette = "Dark2") +
+  guides(color = guide_legend(position = "top")) +
+  theme_bw(base_size = 7) +
+  theme(
+    legend.title = element_blank()
+  )
+```
+
+Finally, we compute the boringness index for all four physical measurements:
+
+```{r}
+penguins |>
+  dplyr::select(bill_length_mm, bill_depth_mm, body_mass_g, flipper_length_mm) |>
+  as.matrix() |>
+  boring(na_rm = TRUE, conf_level = 0.95)
+```

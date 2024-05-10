@@ -20,4 +20,13 @@ Imports:
 LinkingTo: Rcpp, RcppEigen
 RoxygenNote: 7.3.1
 Encoding: UTF-8
+LazyData: true
 URL: https://swarm-lab.github.io/boRing/
+Suggests: 
+    knitr,
+    rmarkdown,
+    ggplot2,
+    dplyr,
+    palmerpenguins,
+    MASS
+VignetteBuilder: knitr

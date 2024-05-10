@@ -65,13 +65,42 @@ run `usethis::edit_r_makevars()`.
 ## Example
 
 ``` r
+library(MASS)
+library(ggplot2)
+library(patchwork)
 library(boRing)
 
-m1 <- matrix(c(rnorm(500, 6), rnorm(500, 11, 3)), ncol = 2)
-m2 <- matrix(c(rnorm(500, 2), rnorm(500, 1, 1)), ncol = 2)
-m3 <- matrix(c(rnorm(500, -13), rnorm(500, -3, 2)), ncol = 2)
+distr1 <- mvrnorm(500, c(0, 0), matrix(c(3, 0.5, 0.5, 1), 2, 2))
+distr2 <- mvrnorm(500, c(0, 0), matrix(c(3, 0.5, 0.5, 1), 2, 2))
 
-X <- rbind(m1, m2, m3)
-plot(X, asp = 1)
-boring(X)
+xlim <- c(min(distr1[, 1], distr2[, 1]), max(distr1[, 1], distr2[, 1]) + 8)
+ylim <- c(min(distr1[, 2], distr2[, 2]), max(distr1[, 2], distr2[, 2]) + 8)
+
+g <- lapply(0:8, function(offset) {
+  dt <- data.frame(
+    x = c(distr1[, 1], distr2[, 1] + offset),
+    y = c(distr1[, 2], distr2[, 2] + offset),
+    dist = c(rep("A", nrow(distr1)), rep("B", nrow(distr1)))
+  )
+
+  idx <- boring(dt[, 1:2])
+
+  ggplot(dt) +
+    aes(x, y) +
+    stat_density_2d(aes(fill = after_stat(level)),
+      geom = "polygon",
+      n = 100, bins = 10, show.legend = FALSE
+    ) +
+    geom_point(aes(color = dist), size = 1) +
+    labs(title = paste0("Boringness index: ", round(idx, 3))) +
+    coord_equal(xlim = xlim, ylim = ylim) +
+    scale_fill_viridis_c(option = "plasma") +
+    scale_color_brewer(palette = "Dark2") +
+    theme_bw() +
+    theme(legend.position = "none")
+})
+
+wrap_plots(g)
 ```
+
+![Example](https://github.com/swarm-lab/boRing/blob/main/man/figures/example.svg?raw=true)

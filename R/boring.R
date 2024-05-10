@@ -16,6 +16,11 @@
   }
 }
 
+.volume_ellipsoid <- function(sigma, r) {
+  d <- nrow(sigma)
+  (r^d * pi^(d / 2) / gamma(d / 2 + 1)) / sqrt(det(sigma))
+}
+
 #' @title Multivariate Unimodality Index
 #'
 #' @description \code{boring} estimates how boring (i.e., unimodal) an empirical
@@ -66,9 +71,10 @@ boring <- function(x, w = rep(1, nrow(x)), na_rm = FALSE, conf_level = NA) {
   covar <- .wcov(x, w)
   d <- sqrt(.Mahalanobis(x, covar$center, covar$cov))
   ord <- order(d)
+  vd <- .volume_ellipsoid(covar$cov, 1)
   .cor(
     x = -d[ord],
-    y = cumsum(w[ord]) / (d[ord]^ncol(x)),
+    y = cumsum(w[ord]) / (vd * d[ord]^ncol(x)),
     conf_level = conf_level
   )
 }
