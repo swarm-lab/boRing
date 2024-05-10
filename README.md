@@ -91,7 +91,7 @@ g <- lapply(0:8, function(offset) {
       geom = "polygon",
       n = 100, bins = 10, show.legend = FALSE
     ) +
-    geom_point(aes(color = dist), size = 1) +
+    geom_point(aes(color = dist), size = 1, alpha = 0.25) +
     labs(title = paste0("Boringness index: ", round(idx, 3))) +
     coord_equal(xlim = xlim, ylim = ylim) +
     scale_fill_viridis_c(option = "plasma") +
