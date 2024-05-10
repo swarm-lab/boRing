@@ -103,4 +103,4 @@ g <- lapply(0:8, function(offset) {
 wrap_plots(g)
 ```
 
-![Example](https://github.com/swarm-lab/boRing/blob/main/man/figures/example.svg?raw=true)
+![](https://github.com/swarm-lab/boRing/blob/main/man/figures/example.svg?raw=true)
