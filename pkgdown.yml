@@ -1,8 +1,11 @@
 pandoc: 3.1.11
 pkgdown: 2.0.9
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-05-06T07:04Z
+articles:
+  clustering: clustering.html
+  examples: examples.html
+  explainer: explainer.html
+last_built: 2024-05-10T07:59Z
 urls:
   reference: https://swarm-lab.github.io/boRing/reference
   article: https://swarm-lab.github.io/boRing/articles

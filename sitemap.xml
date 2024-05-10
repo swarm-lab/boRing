@@ -4,6 +4,18 @@
     <loc>https://swarm-lab.github.io/boRing/404.html</loc>
   </url>
   <url>
+    <loc>https://swarm-lab.github.io/boRing/articles/clustering.html</loc>
+  </url>
+  <url>
+    <loc>https://swarm-lab.github.io/boRing/articles/examples.html</loc>
+  </url>
+  <url>
+    <loc>https://swarm-lab.github.io/boRing/articles/explainer.html</loc>
+  </url>
+  <url>
+    <loc>https://swarm-lab.github.io/boRing/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://swarm-lab.github.io/boRing/authors.html</loc>
   </url>
   <url>
@@ -22,6 +34,12 @@
     <loc>https://swarm-lab.github.io/boRing/reference/dot-wcov.html</loc>
   </url>
   <url>
+    <loc>https://swarm-lab.github.io/boRing/reference/four_Gaussians.html</loc>
+  </url>
+  <url>
     <loc>https://swarm-lab.github.io/boRing/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://swarm-lab.github.io/boRing/reference/three_Gaussians.html</loc>
   </url>
 </urlset>
